@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Organizer</title>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css" />
+</head>
+
+<body>
+    <main class="container">
+        <nav style="margin-bottom: 20px; border-bottom: 2px solid; padding-left: 30px">
+            <ul>
+                <li><a href="{% url 'quoteapp:quote' %}" role="button">Add quote</a></li>
+                <li><a href="{% url 'quoteapp:tag' %}" role="button">Add tag</a></li>
+            </ul>
+        </nav>
+
+        {% for quote in quotes %}
+    <div class="quote" itemscope itemtype="http://schema.org/CreativeWork">
+        <span class="text" itemprop="text">{{quote.quote}}</span>
+        <span>by <small class="author" itemprop="author">{{quote.author}}</small>
+    </div>
+        {% endfor %}
+        
+        {% for tag in tags %}
+        <div class="quote" itemscope itemtype="http://schema.org/CreativeWork">
+            <span class="text" itemprop="text">{{tag.name}}</span>
+        </div>
+        {% endfor %}
+    </main>
+</body>
+
+</html>
